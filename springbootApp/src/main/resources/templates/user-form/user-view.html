@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>User Information and Form</title>
+    <!--importamos estos script para la funcionalidad de herramientas  -->
+    <!--JQUERY: Es una librerìa de JavaScript, permite agregar interactividad a un sitio web sin tener 
+        conocimientos del lenguaje-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!-- Nuestro css-->
+    <link rel="stylesheet" type="text/css" href="../css/user-form.css" th:href="@{/css/user-form.css}">
+
+    <!-- DATA TABLE -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
+            $('#userList').DataTable();
+        });
+    </script>
+</head>
+
+<body>
+    <!--inicio ingreso de pestañas form y lista   -->
+    <!-- Container: Necesaria para poder usar el famoso sistema grid de bootstrap -->
+
+
+
+
+    <div class="container">
+        <!-- mx-auto: Centra el div agregando auto margin al lado izquierda y derecha -->
+        <!--col-sm-8: utiliza 8 celdas de las 12 utilizadas por el grid sistem.  -->
+        <!-- main-section: clase definida para personalizarlo con css.-->
+        <div class="mx-auto col-sm-8 main-section" id="myTab" role="tablist">
+
+            <!--nav nav-tabs: Transforma la lista <ul> de vertical a horizontal y le agrega el estilo tipo “cajita”. -->
+            <!--justify-content-end: Alinea los tabs a la derecha.  -->
+            <ul class="nav nav-tabs justify-content-end">
+                <!--nav-item nav-link: Indica que ese  <li> es un tab y le da el estilo necesario-->
+                <!--active: Indica que ese tab sera el seleccionado al mostrar la pagina. -->
+                <li class="nav-item">
+                    <a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false">Lista</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="form-tab" data-toggle="tab" href="#form" role="tab" aria-controls="form" aria-selected="true">Formulario</a>
+                </li>
+            </ul>
+            <!-- tab-content: El div con esta clase mostrara y contendra el contenido para los tabs -->
+            <div class="tab-content" id="myTabContent">
+                <!--tab-pane fade show: Sirve para hacer fade-in, osea mostrar o aparecer el contenido de forma gradual-->
+                <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+                    <div class="card">
+                        <!--ingreso de tabla contenido   -->
+                        <div class="card-header">
+                            <h4>Usuarios</h4>
+                        </div>
+                      
+                        <div class="card-body">
+                        
+                        <div th:include="user-form/user-list.html" th:remove="tag"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="form" role="tabpanel" aria-labelledby="form-tab">
+                    <!-- Formulario de usuarios-->
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Creación de usuarios</h4>
+                        </div>
+                        <div class="card-body">
+                         <div th:include="user-form/user-form.html" th:remove="tag"></div>
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</html>
+
+</body>
+
+</html>
