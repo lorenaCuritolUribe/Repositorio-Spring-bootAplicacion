@@ -1,0 +1,57 @@
+<html>
+
+<head>
+    <title>Mi Login</title>
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!--FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+    </script>
+
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js">
+    </script>
+
+    <!-- Nuestro css-->
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+</head>
+
+<body>
+    <!-- text-center: es una clase -->
+    <div class="modal-dialog text-center">
+        <!-- menciono que este div serà mi seccion principal -->
+        <div class="col-sm-8 main-section">
+            <!-- con el div del modal-content, señalo que este es el contenido del modal -->
+            <div class="modal-content">
+
+                <div class="col-12 user-img">
+                    <!-- coloco acá la imagen con etiqueta img y la ruta con src -->
+                    <img src="../img/usuario2.png" />
+                </div>
+                <!-- acá creo el formulario -->
+                <!-- le digo que ocupe espacio total con col-12 -->
+                <form class="col-12">
+                    <!-- coloco el id para llamarlo desde el css -->
+                    <div class="form-group" id="user-group">
+                        <input type="text" class="form-control" placeholder="Nombre usuario" />
+                    </div>
+                    <div class="form-group" id="contrasena-group">
+                        <input type="password" class="form-control" placeholder="Contrasena" />
+                    </div>
+                    <!-- i: me permite agregar el ícono, btn hace mención a boostrap -->
+                    <button type="submit" class="btn btn-secondary"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
+                </form>
+                <div class="col-12 forgot">
+                    <a href="#">Recordar contrasena</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

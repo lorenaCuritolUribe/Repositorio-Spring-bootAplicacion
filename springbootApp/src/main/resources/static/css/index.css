@@ -1,0 +1,88 @@
+body {
+    background: url(../img/musicFondo.jpg) no-repeat center center fixed;
+    /* cover: propiedad que permite expandir imagen de fondo  */
+    background-size: cover;
+}
+
+.main-section {
+    /* aqui centro el cuadro de login */
+    margin: 100 auto;
+    margin-top: 10%;
+    padding: 0%;
+}
+
+
+/* configuro color de caja de login */
+
+.modal-content {
+    background-color: rgb(105, 63, 7);
+    opacity: .80;
+    padding: 0%;
+    /* colocar border con propiedad box.shadom 0 horizontal,
+    0 vertical, grosor 3 y color */
+    box-shadow: 0px 0px 5px blue;
+}
+
+.user-img {
+	    /* establesco los márgenes de la imagen */
+    /* -50 la subo */
+    margin: -90px;
+    /* 35 la bajo */
+    margin-bottom: 10px;
+}
+
+/* aca le digo adentro de esa imagen coloque los sigtes margenes */
+
+.user-img img{
+    /* asignamos tamaño imagen */
+    width: -25px;
+    height: -25px;
+    /* asignamos sombra a imagen */
+    box-shadow: 0px 0px 3px blueviolet;
+    /* dividimos los colores para que se adapte */
+    border-radius: 100%;
+}
+
+
+
+/* señalo al form-group y todos los input que esten adentro */
+
+.form-group input {
+    height: 42px;
+    /* tamaño de letra */
+    font-size: 18px;
+    border: 3px;
+    /* padding: para colocar espacio de íconos */
+    padding-left: 54px;
+    border-radius: 5px;
+    background-color: rgb(255, 251, 251);
+}
+
+.form-group::before {
+    font-family: "Font Awesome\ 5 Free";
+    position: absolute;
+    left: 28px;
+    font-size: 22px;
+    padding-top: 4px;
+}
+
+.form-group#user-group::before {
+    content: "\f0c0";
+}
+
+.form-group#contrasena-group::before {
+    content: "\f023";
+}
+
+button {
+    margin: 60%;
+    margin: 5% 0 25px;
+}
+
+.forgot {
+    padding: 5px 0;
+}
+
+.forgot a {
+    color: white;
+}
