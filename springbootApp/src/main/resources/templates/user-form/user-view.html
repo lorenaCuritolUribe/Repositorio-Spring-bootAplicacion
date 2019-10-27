@@ -54,11 +54,12 @@
                 <!--nav-item nav-link: Indica que ese  <li> es un tab y le da el estilo necesario-->
                 <!--active: Indica que ese tab sera el seleccionado al mostrar la pagina. -->
                 <li class="nav-item">
-                    <a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false">Lista</a>
+                    <a class="nav-link active" th:classappend=" ${listTab}" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false">Lista</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="form-tab" data-toggle="tab" href="#form" role="tab" aria-controls="form" aria-selected="true">Formulario</a>
+                    <a class="nav-link" th:classappend=" ${formTab}" id="form-tab" data-toggle="tab" href="#form" role="tab" aria-controls="form" aria-selected="true">Formulario</a>
                 </li>
+                
             </ul>
             <!-- tab-content: El div con esta clase mostrara y contendra el contenido para los tabs -->
             <div class="tab-content" id="myTabContent">
@@ -78,12 +79,13 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="form" role="tabpanel" aria-labelledby="form-tab">
-                    <!-- Formulario de usuarios-->
+                   
                     <div class="card">
                         <div class="card-header">
                             <h4>Creación de usuarios</h4>
                         </div>
                         <div class="card-body">
+                        
                          <div th:include="user-form/user-form.html" th:remove="tag"></div>
                           
                         </div>
