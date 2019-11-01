@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.JoinColumn;
@@ -25,16 +27,27 @@ public class User implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
 	private Long id;
-	
-	@Column 
+
+//@NotBlank: El valor no puede ser null y debe contener al menos un caracter que no sea espacio.
+//@Email: Valida que el valor ingresado tenga el formato valido de email.
+
+@Column
+@NotBlank
 	private String firstName;
 	@Column 
+	@NotBlank
 	private String lastName;
+	
 	@Column(unique = true) 
+	@NotBlank
 	private String email;
-	@Column(unique = true) 
+	
+	@Column(unique = true)
+	@NotBlank
 	private String username;
+	
 	@Column
+	@NotBlank
 	private String password;
 	
 	@Transient 

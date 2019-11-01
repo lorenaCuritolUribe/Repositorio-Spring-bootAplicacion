@@ -1,5 +1,7 @@
 package com.lorenacuritol.springbootApp.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,33 @@ public class UserServiceImpl implements UserService {
 	public Iterable<User> getAllUser() {
 //entonces le decimos que retorne todos los usuario		
 		return repositorio.findAll();
+	}
+	
+	private boolean checkUsernameAvailable(User user) throws Exception {
+	
+		Optional<User> userFound = repositorio.findByUsername(user.getUsername());
+		if(userFound.isPresent()) {
+			throw new Exception("usuario no disponible");
+			
+		}
+		return true;
+	}
+	
+	private boolean checkPasswordValid(User user) throws Exception{
+		
+		if(!user.getPassword().equals(user.getConfirmPassword())) {
+			throw new Exception("Password y confirmaciòn de pasword no son iguales");
+		}
+		return true;			
+	}
+
+	@Override
+	public User createUser(User user) throws Exception{
+		// creamos un if para saber si el username y password existen
+		if(checkUsernameAvailable(user) && checkPasswordValid(user)) {
+			user= repositorio.save(user);
+		}
+		return user;
 	}
 
 }
