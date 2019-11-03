@@ -1,9 +1,16 @@
 
 <!-- Formulario de usuarios-->
 
+<!-- ?: este signo en java es una condiciòn de asignaciòn que es lo mismo que ==true  -->
+<!-- : estos dospuntos es otra condicion de asignacion igual a false -->
 <form class="form" role="form" autocomplete="off"
-	th:object="${userForm}" th:action="@{/userForm}" method="post">
 
+	th:object="${userForm}" th:action="${editMode} ?@{/editUser} :@{/userForm}" method="post">
+
+<!--Es necesario para poder pasar la validacion del Model llamandolo desde el formulario-->
+    <input class="form-control" type=hidden th:field="${userForm.id}" th:value="xxxx" th:if="${editMode}">
+	<input class="form-control" type=hidden th:field="${userForm.password}" th:value="xxxx" th:if="${editMode}">
+	
 	<div class="form-group row">
 		<label class="col-lg-3 col-form-label form-control-label">Primer
 			nombre</label>
@@ -57,6 +64,7 @@ opcion tiene el atributo th:each para poder interactuar con los roles agregados 
 			<div class="alert-danger" th:if="${#fields.hasErrors('roles')}"
 				th:errors="*{roles}">roles Error</div>
 		</div>
+		<div class="form-group row" th:if="${editMode==null or editMode==false}">
 		<label th:text="Contrasena"
 			class="col-lg-3 col-form-label form-control-label"></label>
 		<div class="col-lg-9">
@@ -66,7 +74,7 @@ opcion tiene el atributo th:each para poder interactuar con los roles agregados 
 				th:errors="*{password}">password Error</div>
 		</div>
 	</div>
-	<div class="form-group row">
+	<div class="form-group row" th:if="${editMode==null or editMode==false}">
 		<label class="col-lg-3 col-form-label form-control-label">Confirmar
 			contrasena</label>
 
@@ -81,8 +89,11 @@ opcion tiene el atributo th:each para poder interactuar con los roles agregados 
 	</div>
 	<div class="form-group row">
 		<div class="col-lg-12 text-center">
-			<input type="reset" class="btn btn-secondary" value="Cancelar">
-			<input type="submit" class="btn btn-primary" value="Guardar">
+		
+			<a class="btn btn-secondary" th:href="@{'/userForm/cancelar'}">Cancelar</a>	
+			<input type="submit" class="btn btn-primary" value="Guardar"
+			th:value="${editMode}?'Guardar Usuario':'Create User'">
+			
 
 		</div>	
 	</div>

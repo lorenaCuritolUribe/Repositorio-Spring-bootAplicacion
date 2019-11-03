@@ -38,6 +38,10 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	private boolean checkPasswordValid(User user) throws Exception{
+//método para verificar si password viene vacìo
+		if(user.getConfirmPassword() == null || user.getConfirmPassword().isEmpty() ) {
+			throw new Exception("confirmar la contraseña es obligatorio");
+		}
 		
 		if(!user.getPassword().equals(user.getConfirmPassword())) {
 			throw new Exception("Password y confirmaciòn de pasword no son iguales");
@@ -52,6 +56,31 @@ public class UserServiceImpl implements UserService {
 			user= repositorio.save(user);
 		}
 		return user;
+	}
+
+	@Override
+	public User getUserById(Long id) throws Exception {
+		return repositorio.findById(id).orElseThrow(()-> new Exception("El usuario para editar no existe"));
+	}
+//mapeo: es pasar los objetos o los valores de los usuarios que tenemos en  el formulario a la bd
+	@Override
+	public User updateUser(User fromUser) throws Exception {
+		User toUser = getUserById(fromUser.getId());
+//fromUser(desde este usuario), toUser(hasta este usuario)
+		mapUser(fromUser, toUser);
+		return repositorio.save(toUser);
+	}
+//metodo para mapear los datos que dice de què usuario a cuàl usuario
+	
+	protected void mapUser(User from, User to) {
+		
+		to.setUsername(from.getUsername());
+		to.setFirstName(from.getFirstName());
+		to.setLastName(from.getLastName());
+		to.setEmail(from.getEmail());
+		to.setRoles(from.getRoles());
+		to.setPassword(from.getPassword());
+		
 	}
 
 }

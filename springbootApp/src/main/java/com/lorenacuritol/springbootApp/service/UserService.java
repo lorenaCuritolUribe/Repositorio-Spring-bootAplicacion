@@ -10,8 +10,11 @@ public interface UserService {
 	public Iterable<User> getAllUser();
 
 	public User createUser(User user) throws Exception;
+	
+//	parte 6: creamos mètodos para actualizar usuarios luego vamos a UserServiceImpl
+	
+	public User getUserById(Long id) throws Exception;
 
-	
-	
+	public User updateUser(User user) throws Exception;
 	
 }
