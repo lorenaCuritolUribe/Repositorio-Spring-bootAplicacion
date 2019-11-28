@@ -17,17 +17,31 @@
 			<!-- th: para referirnos a thymeleaf each: es como un for each -->
 			<!-- user: ${userList}: traemos del objeto user su lista -->
 			<tr th:each="user: ${userList}">
-				<td th:text="${user.id}"></td> <!-- esto codigo es = a user.getId(); -->
+				<td th:text="${user.id}"></td>
+				<!-- esto codigo es = a user.getId(); -->
 				<td th:text="${user.firstName}"></td>
 				<td th:text="${user.lastName}"></td>
 				<td th:text="${user.email}"></td>
 				<td th:text="${user.username}"></td>
-				<td>
-				<a href="#" th:href="@{'/editUser/'+ ${user.id}}"><i class="fas fa-edit"></i></a> | 
-				<a href="#" th:onclick="'javascript:confirmDelete(\''+ ${user.id} +'\');'"><i class="fas fa-user-times"></i></a>
-						</td>
+				<td><a href="#" th:href="@{'/editUser/'+ ${user.id}}"><i
+						class="fas fa-edit"></i></a> | <a href="#"
+					th:onclick="'javascript:confirmDelete(\''+ ${user.id} +'\');'"><i
+						class="fas fa-user-times"></i></a></td>
 			</tr>
-			
+
 		</tbody>
 	</table>
+	
 </div>
+
+<script type="text/javascript">
+function confirmDelete(id){
+	$('#deleteModal').modal('show');
+	$("#userIdHiddenInput").val(id);
+}
+
+function deleteUser(){
+	var id = $("#userIdHiddenInput").val();
+    window.location = "deleteUser/"+id;
+}
+</script>

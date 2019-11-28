@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
 		}
 		return true;			
 	}
-
+	
 	@Override
 	public User createUser(User user) throws Exception{
 		// creamos un if para saber si el username y password existen
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUserById(Long id) throws Exception {
-		return repositorio.findById(id).orElseThrow(()-> new Exception("El usuario para editar no existe"));
+		return repositorio.findById(id).orElseThrow(()-> new Exception("El usuario no existe"));
 	}
 //mapeo: es pasar los objetos o los valores de los usuarios que tenemos en  el formulario a la bd
 	@Override
@@ -81,6 +81,11 @@ public class UserServiceImpl implements UserService {
 		to.setRoles(from.getRoles());
 		to.setPassword(from.getPassword());
 		
+	}
+	@Override
+	public void deleteUser(Long id) throws Exception {
+		User user = getUserById(id);
+		repositorio.delete(user);
 	}
 
 }
